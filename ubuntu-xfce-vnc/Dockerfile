@@ -31,14 +31,22 @@ RUN mkdir -p $NO_VNC_HOME/utils/websockify \
     &&  wget -qO- https://github.com/kanaka/websockify/archive/v0.7.0.tar.gz | tar xz --strip 1 -C $NO_VNC_HOME/utils/websockify \
     && chmod +x -v /root/noVNC/utils/*.sh
 
-### Install firfox and chrome browser
+### Install chrome browser
 RUN apt-get update \
-    && apt-get install -y firefox chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
+    && apt-get install -y chromium-browser chromium-browser-l10n chromium-codecs-ffmpeg \
     && rm -rf /var/lib/apt/ \
     && ln -s /usr/bin/chromium-browser /usr/bin/google-chrome \
     # fix to start chromium in a Docker container, see https://github.com/ConSol/docker-headless-vnc-container/issues/2
     && echo "CHROMIUM_FLAGS='--no-sandbox --start-maximized --user-data-dir'" > ~/.chromium-browser.init
 
+
+# firefox	
+RUN apt-get update \
+	&& apt-get install -y firefox \
+	&& apt-get autoclean \
+	&& apt-get autoremove \
+	&& rm -rf /var/lib/apt/lists/*
+	
 
 # firefox flash
 RUN sed "s|#\(.*multiverse\)|\1|g" /etc/apt/sources.list -i \
