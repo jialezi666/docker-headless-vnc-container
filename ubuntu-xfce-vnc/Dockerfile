@@ -2,7 +2,7 @@
 
 FROM ubuntu:14.04
 
-MAINTAINER Tobias Schneck "tobias.schneck@consol.de"
+MAINTAINER jaz  "jaz@live.cn"
 ENV REFRESHED_AT 2016-10-21
 
 ENV JAVA_VERSION 8u92
@@ -12,9 +12,8 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DISPLAY :1
 ENV NO_VNC_HOME /root/noVNC
 ENV VNC_COL_DEPTH 24
-ENV VNC_RESOLUTION 1280x1024
-ENV VNC_PW vncpassword
-
+ENV VNC_RESOLUTION 1366x768
+ENV VNC_PW 123456
 ENV SAKULI_DOWNLOAD_URL https://labs.consol.de/sakuli/install
 
 ############### add linux-mint dependicies and update packages
