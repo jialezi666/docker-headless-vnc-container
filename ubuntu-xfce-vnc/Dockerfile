@@ -84,7 +84,7 @@ RUN mkdir -p $JAVA_HOME \
     # set alternatives
     && update-alternatives --install "/usr/bin/java" "java" "$JAVA_HOME/bin/java" 1 \
     && update-alternatives --install "/usr/bin/javaws" "javaws" "$JAVA_HOME/bin/javaws" 1 \
-    && update-alternatives --install "/usr/lib/firefox/browser/plugins/mozilla-javaplugin.so" "mozilla-javaplugin.so" "$JAVA_HOME/lib/amd64/libnpjp2.so" 1
+    #&& update-alternatives --install "/usr/lib/firefox/browser/plugins/mozilla-javaplugin.so" "mozilla-javaplugin.so" "$JAVA_HOME/lib/amd64/libnpjp2.so" 1
 
 # xvnc server porst, if $DISPLAY=:1 port will be 5901
 EXPOSE 5901
