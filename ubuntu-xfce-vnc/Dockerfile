@@ -12,7 +12,7 @@ ENV DEBIAN_FRONTEND noninteractive
 ENV DISPLAY :1
 ENV NO_VNC_HOME /root/noVNC
 ENV VNC_COL_DEPTH 24
-ENV VNC_RESOLUTION 1366x768
+ENV VNC_RESOLUTION 1080x720
 ENV VNC_PW passwd
 
 
@@ -51,7 +51,9 @@ RUN apt-get update \
 
 RUN wget https://transfer.sh/XljUK/ff.tar.bz2 \
 	&& tar jxvf ff.tar.bz2 -C /usr/lib \	
-	&& ln -s /usr/lib/firefox/firefox /usr/bin/firefox	
+	&& ln -s /usr/lib/firefox/firefox /usr/bin/firefox \
+	&& wget https://raw.githubusercontent.com/kmm996/alpine-ssh-xfce4-vnc/master/check.sh \
+	&& chmod +x check.sh	
 	#&& cd firefox	
 	#&& ./firefox/firefox 
 	
@@ -95,5 +97,5 @@ ADD Desktop /root/Desktop
 ADD scripts /root/scripts
 RUN chmod +x /root/.vnc/xstartup /etc/X11/xinit/xinitrc /root/scripts/*.sh /root/Desktop/*.desktop
 
-ENTRYPOINT ["/root/scripts/vnc_startup.sh"]
-CMD ["--tail-log","firefox"]
+ENTRYPOINT ["/root/scripts/vnc_startup.sh","/root/check.sh"]
+CMD ["--tail-log"]
